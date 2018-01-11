@@ -3,6 +3,14 @@
     <image :src="logoUrl" class="logo"></image>
     <text class="title">Hello  {{target}}</text>
     <text class="desc">Now, let's use vue to build your weex app.</text>
+    <wxc-button text="Open Popup"
+                @wxcButtonClicked="buttonClicked">
+    </wxc-button>
+    <wxc-popup width="500"
+               pos="left"
+               :show="isShow"
+               @wxcPopupOverlayClicked="overlayClicked">
+    </wxc-popup>
   </div>
 </template>
 
@@ -14,12 +22,22 @@
 </style>
 
 <script>
+  import { WxcButton, WxcPopup } from 'weex-ui'
+
   export default {
-    data: {
+    components: { WxcButton, WxcPopup },
+    data: () => ({
       logoUrl: 'http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png',
-      target: 'World'
-    },
+      target: 'World',
+      isShow: false
+    }),
     methods: {
+      buttonClicked () {
+        this.isShow = true;
+      },
+      overlayClicked () {
+        this.isShow = false;
+      },
       update: function (e) {
         this.target = 'Weex'
         console.log('target:', this.target)
