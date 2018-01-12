@@ -2,7 +2,7 @@
   <div class="wrapper" @click="update">
     <div>
       <image :src="logoUrl" class="logo"></image>
-      <text class="title">Hello  AB {{target}}</text>
+      <text class="title">Hello  ABC {{target}}</text>
       <text class="desc">Now, let's use vue to build your weex app.</text>
       <wxc-button text="Open Popup"
                   @wxcButtonClicked="buttonClicked">
