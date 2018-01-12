@@ -113,11 +113,25 @@ const webConfig = {
       use: [{
         loader: 'vue-loader',
         options: {
+          optimizeSSR: false,
+          postcss: [
+            // to convert weex exclusive styles.
+            require('postcss-plugin-weex')(),
+            require('autoprefixer')({
+              browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
+            }),
+            require('postcss-plugin-px2rem')({
+              // base on 750px standard.
+              rootValue: 75,
+              // to leave 1px alone.
+              minPixelValue: 1.01
+            })
+          ],
           compilerModules: [
             {
               postTransformNode: el => {
-                el.staticStyle = `$processStyle(${el.staticStyle})`
-                el.styleBinding = `$processStyle(${el.styleBinding})`
+                // to convert vnode for weex components.
+                require('weex-vue-precompiler')()(el)
               }
             }
           ]
