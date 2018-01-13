@@ -1,12 +1,12 @@
 const pathTo = require('path');
 const fs = require('fs-extra');
 const webpack = require('webpack');
-const entry = {};
-const weexEntry = {};
+const entry = {index: pathTo.resolve('src', 'entry.js')};
+const weexEntry = {index: pathTo.resolve('src', 'entry.js')};
 const vueWebTemp = 'temp';
 const hasPluginInstalled = fs.existsSync('./web/plugin.js');
 const isWin = /^win/.test(process.platform);
-let fileType = '';
+let fileType = '.vue';
 // Wraping the entry file
 const getEntryFileContent = (entryPath, vueFilePath) => {
     let relativePath = pathTo.relative(pathTo.join(entryPath, '../'), vueFilePath);
@@ -35,7 +35,8 @@ const walk = (dir) => {
       const fullpath = pathTo.join(directory, file);
       const stat = fs.statSync(fullpath);
       const extname = pathTo.extname(fullpath);
-      if (stat.isFile() && extname === '.vue' || extname === '.we') {
+      const basename = pathTo.basename(fullpath);
+      if (stat.isFile() && basename !== 'App.vue' && extname === '.vue' || extname === '.we' ) {
         if (!fileType) {
           fileType = extname;
         }
