@@ -1,5 +1,5 @@
 <template>
-  <div @click="update">
+  <scroller @click="update">
     <div>
       <slider class="slider" interval="3000" auto-play="true">
         <div class="frame" v-for="img in imageList">
@@ -19,12 +19,23 @@
       <text class="title">Home {{target}}</text>
       <text class="title">Home {{target}}</text>
       <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
       <text class="desc">Now, let's use vue to build your weex app.</text>
       <wxc-button text="Open Popup"
                   @wxcButtonClicked="buttonClicked">
       </wxc-button>
     </div>
-  </div>
+  </scroller>
 </template>
 
 <style scoped>

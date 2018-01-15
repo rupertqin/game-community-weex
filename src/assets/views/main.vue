@@ -1,6 +1,6 @@
 <template>
-  <scroller>
-    <router-view class="r-box"></router-view>
+  <div>
+    <router-view></router-view>
     <wxc-popup width="500"
                pos="left"
                ref="sidebar"
@@ -16,7 +16,7 @@
                 @wxcCellClicked="linkTo(`/main/topic`)"
                 :has-margin="true"></wxc-cell>
     </wxc-popup>
-  </scroller>
+  </div>
 </template>
 
 <style scoped>
@@ -24,8 +24,6 @@
 
 <script>
   import { WxcButton, WxcPopup, WxcCell } from 'weex-ui'
-
-
 
   export default {
     components: { WxcButton, WxcPopup, WxcCell },
