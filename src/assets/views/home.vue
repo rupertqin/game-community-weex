@@ -1,7 +1,23 @@
 <template>
-  <div class="wrapper" @click="update">
+  <div @click="update">
     <div>
-      <image :src="logoUrl" class="logo"></image>
+      <slider class="slider" interval="3000" auto-play="true">
+        <div class="frame" v-for="img in imageList">
+          <image class="image" resize="cover" :src="img.src"></image>
+        </div>
+      </slider>
+
+      <image :src="logoUrl" class="logo" style="width: 360px;height: 207.6px;"></image>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
+      <text class="title">Home {{target}}</text>
       <text class="title">Home {{target}}</text>
       <text class="desc">Now, let's use vue to build your weex app.</text>
       <wxc-button text="Open Popup"
@@ -12,10 +28,28 @@
 </template>
 
 <style scoped>
-  .wrapper { align-items: center; margin-top: 120px; }
+
   .title { padding-top:100px; padding-bottom: 40px; font-size: 48px; }
-  .logo { width: 360px; height: 156px; }
   .desc { padding-top: 0px; color:#888; font-size: 30px;}
+
+  .image {
+    width: 700px;
+    height: 700px;
+  }
+  .slider {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 700px;
+    height: 700px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #41B883;
+  }
+  .frame {
+    width: 700px;
+    height: 700px;
+    position: relative;
+  }
 </style>
 
 <script>
@@ -25,18 +59,25 @@
 
   export default {
     components: { WxcButton, WxcPopup },
-    text: 'hipanda',
     data: () => ({
-      logoUrl: 'http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png',
+      logoUrl: 'https://pic.36krcnd.com/201801/15061930/b80tardo9yta6qgf!heading',
       target: 'World',
+      imageList: [
+        { src: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'},
+        { src: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg'},
+        { src: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'}
+      ]
     }),
     methods: {
       buttonClicked () {
         this.$store.dispatch('OPEN_SIDEBAR')
       },
       update: function (e) {
-        this.target = 'Weex'
-        console.log('target:', this.target)
+        if (this.target === 'Weex') {
+          this.target = '妈卖妣'
+        } else {
+          this.target = 'Weex'
+        }
       }
     }
   }

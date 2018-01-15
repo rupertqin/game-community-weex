@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" @click="update">
+  <div @click="update">
     <div>
       <text class="title">Topic {{target}}</text>
       <text class="desc">Now, let's use vue to build your weex app.</text>
@@ -11,7 +11,6 @@
 </template>
 
 <style scoped>
-  .wrapper { align-items: center; margin-top: 120px; }
   .title { padding-top:100px; padding-bottom: 40px; font-size: 48px; }
   .logo { width: 360px; height: 156px; }
   .desc { padding-top: 0px; color:#888; font-size: 30px;}
