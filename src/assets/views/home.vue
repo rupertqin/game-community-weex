@@ -29,14 +29,10 @@
     data: () => ({
       logoUrl: 'http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png',
       target: 'World',
-      isShow: false
     }),
     methods: {
       buttonClicked () {
-        this.isShow = true;
-      },
-      overlayClicked () {
-        this.isShow = false;
+        this.$store.dispatch('OPEN_SIDEBAR')
       },
       update: function (e) {
         this.target = 'Weex'

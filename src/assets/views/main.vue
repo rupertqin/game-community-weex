@@ -1,15 +1,21 @@
 <template>
   <div class="wrapper" @click="update">
     <div>
-      <wxc-button text="Open Popup"
-                  @wxcButtonClicked="buttonClicked">
-      </wxc-button>
-      
       <router-view class="r-box"></router-view>
       <wxc-popup width="500"
                  pos="right"
-                 :show="isShow"
+                 ref="sidebar"
+                 :show="isSidebarOpen"
                  @wxcPopupOverlayClicked="overlayClicked">
+
+        <wxc-cell label="首页"
+                  :has-arrow="true"
+                  @wxcCellClicked="linkTo(`/main/home`)"
+                  :has-margin="true"></wxc-cell>
+        <wxc-cell label="新闻"
+                  :has-arrow="true"
+                  @wxcCellClicked="linkTo(`/main/topic`)"
+                  :has-margin="true"></wxc-cell>
       </wxc-popup>
     </div>
   </div>
@@ -23,28 +29,36 @@
 </style>
 
 <script>
-  import { WxcButton, WxcPopup } from 'weex-ui'
+  import { WxcButton, WxcPopup, WxcCell } from 'weex-ui'
 
 
 
   export default {
-    components: { WxcButton, WxcPopup },
+    components: { WxcButton, WxcPopup, WxcCell },
     text: 'hipanda',
     data: () => ({
       logoUrl: 'http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png',
       target: 'World',
-      isShow: false
     }),
+    computed: {
+      isSidebarOpen() {
+        return this.$store.state.isSidebarOpen
+      }
+    },
     methods: {
-      buttonClicked () {
-        this.isShow = true;
+      linkTo(path) {
+        this.$router.push(path)
+        this.$refs.sidebar.hide()
       },
       overlayClicked () {
-        this.isShow = false;
+        this.$store.dispatch('CLOSE_SIDEBAR')
       },
       update: function (e) {
         this.target = 'Weex'
         console.log('target:', this.target)
+      },
+      wxcCellClicked() {
+
       }
     }
   }
