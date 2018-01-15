@@ -1,6 +1,18 @@
 <template>
   <div class="wrapper" @click="update">
-    <router-view class="r-box"></router-view>
+    <div>
+      <image :src="logoUrl" class="logo"></image>
+      <text class="title">My {{target}}</text>
+      <text class="desc">Now, let's use vue to build your weex app.</text>
+      <wxc-button text="Open Popup"
+                  @wxcButtonClicked="buttonClicked">
+      </wxc-button>
+      <wxc-popup width="500"
+                 pos="left"
+                 :show="isShow"
+                 @wxcPopupOverlayClicked="overlayClicked">
+      </wxc-popup>
+    </div>
   </div>
 </template>
 

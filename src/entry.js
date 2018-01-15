@@ -1,9 +1,11 @@
 // import Vue from 'vue'
 import App from './App.vue'
+import router from './router'
 
 
 console.log('fires')
 
-App.el = '#root'
-new Vue(App)
 
+new Vue(Vue.util.extend({ el: '#root', router }, App));
+
+router.push('/');
