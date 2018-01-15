@@ -4,6 +4,8 @@
       <wxc-button text="Open Popup"
                   @wxcButtonClicked="buttonClicked">
       </wxc-button>
+      
+      <router-view class="r-box"></router-view>
       <wxc-popup width="500"
                  pos="right"
                  :show="isShow"

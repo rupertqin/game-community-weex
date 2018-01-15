@@ -50,6 +50,8 @@ const walk = (dir) => {
           entry[name] = pathTo.join(__dirname, entryFile) + '?entry=true';
         }
         weexEntry[name] = fullpath + '?entry=true';
+
+      // 除了以下子文件夹
       } else if (stat.isDirectory() && !['build','include','assets','filters','mixins'].includes(file)) {
         const subdir = pathTo.join(dir, file);
         walk(subdir);

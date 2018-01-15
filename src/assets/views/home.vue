@@ -7,11 +7,6 @@
       <wxc-button text="Open Popup"
                   @wxcButtonClicked="buttonClicked">
       </wxc-button>
-      <wxc-popup width="500"
-                 pos="right"
-                 :show="isShow"
-                 @wxcPopupOverlayClicked="overlayClicked">
-      </wxc-popup>
     </div>
   </div>
 </template>
