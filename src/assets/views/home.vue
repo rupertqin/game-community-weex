@@ -1,6 +1,17 @@
 <template>
-  <scroller @click="update">
+  <scroller>
     <div>
+      <wxc-minibar title="首页"
+                   background-color="#FFF3CD"
+                   text-color="#FFFFFF"
+                   right-text="more"
+                   :useDefaultReturn="false"
+                   @wxcMinibarLeftButtonClicked="minibarLeftButtonClick"
+                   @wxcMinibarRightButtonClicked="minibarRightButtonClick">
+        <image src="https://img.alicdn.com/tfs/TB1QN8pdlHH8KJjy0FbXXcqlpXa-220-80.png"
+               slot="left"
+               style="height: 32px;width: 88px;"></image>  
+      </wxc-minibar>
       <slider class="slider" interval="3000" auto-play="true">
         <div class="frame" v-for="img in imageList">
           <image class="image" resize="cover" :src="img.src"></image>
@@ -8,24 +19,6 @@
       </slider>
 
       <image :src="logoUrl" class="logo" style="width: 360px;height: 207.6px;"></image>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
       <text class="title">Home {{target}}</text>
       <text class="title">Home {{target}}</text>
       <text class="title">Home {{target}}</text>
@@ -64,12 +57,12 @@
 </style>
 
 <script>
-  import { WxcButton, WxcPopup } from 'weex-ui'
+  import { WxcButton, WxcPopup, WxcMinibar } from 'weex-ui'
 
 
 
   export default {
-    components: { WxcButton, WxcPopup },
+    components: { WxcButton, WxcPopup, WxcMinibar },
     data: () => ({
       logoUrl: 'https://pic.36krcnd.com/201801/15061930/b80tardo9yta6qgf!heading',
       target: 'World',
@@ -83,12 +76,11 @@
       buttonClicked () {
         this.$store.dispatch('OPEN_SIDEBAR')
       },
-      update: function (e) {
-        if (this.target === 'Weex') {
-          this.target = '妈卖妣'
-        } else {
-          this.target = 'Weex'
-        }
+      minibarLeftButtonClick () {
+        this.$store.dispatch('OPEN_SIDEBAR')
+      },
+      minibarRightButtonClick () {
+        modal.toast({ 'message': 'click rightButton!', 'duration': 1 });
       }
     }
   }

@@ -23,10 +23,12 @@
 </style>
 
 <script>
-  import { WxcButton, WxcPopup, WxcCell } from 'weex-ui'
+  import { WxcButton, WxcPopup, WxcCell, WxcMinibar } from 'weex-ui'
+
+  const modal = weex.requireModule('modal');
 
   export default {
-    components: { WxcButton, WxcPopup, WxcCell },
+    components: { WxcButton, WxcPopup, WxcCell, WxcMinibar },
     computed: {
       isSidebarOpen() {
         return this.$store.state.isSidebarOpen
@@ -42,7 +44,8 @@
       },
       wxcCellClicked() {
 
-      }
+      },
+
     }
   }
 </script>
