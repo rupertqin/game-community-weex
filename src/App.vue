@@ -24,6 +24,12 @@
 </template>
 
 <style scoped>
+  .iconfont {
+    font-family: iconfont;
+  }
+  .fa {
+    font-family: awesomefont;
+  }
 </style>
 
 <script>

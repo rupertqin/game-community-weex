@@ -81,7 +81,7 @@
   .slider {
     margin-bottom: 25px;
     width: 750px;
-    height: 750px;
+    height: 250px;
   }
   .frame {
     width: 750px;
@@ -93,11 +93,7 @@
 <script>
   import { WxcButton, WxcPopup, WxcMinibar } from 'weex-ui'
 
-  var modal = weex.requireModule('modal')
-  modal.toast({
-    message: 'I am a toast.',
-    duration: 3
-  })
+  const modal = weex.requireModule('modal')
 
 
 
@@ -115,6 +111,12 @@
       platform: weex.config.env.platform
 
     }),
+    created() {
+      modal.toast({
+        message: 'I am a toast.',
+        duration: 3
+      })
+    },
     methods: {
       buttonClicked () {
         this.$store.dispatch('OPEN_SIDEBAR')
