@@ -4,12 +4,12 @@ import router from './router'
 import store from './store'
 import mixins from './mixins'
 
-const meta = weex.requireModule('meta')
+// const meta = weex.requireModule('meta')
 
 
 Vue.mixin(mixins)
-meta.setViewport({  
-  width: 750
-})
+// meta.setViewport({  
+//   width: 750
+// })
 new Vue(Vue.util.extend({ el: '#root', router, store }, App))
-router.push('/')
+router.push('/home')

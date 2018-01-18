@@ -8,13 +8,30 @@
                    :useDefaultReturn="false"
                    @wxcMinibarLeftButtonClicked="minibarLeftButtonClick"
                    @wxcMinibarRightButtonClicked="minibarRightButtonClick">
-        <text slot="left" class="fa" style="color:#fff; width:48px; height:48px; font-size:48px;" >&#xf0c9;</text>
+        <text slot="left" class="fa" style="color:#fff; width:36px; height:36px; font-size:36px;" >&#xf0c9;</text>
       </wxc-minibar>
       <slider class="slider" interval="3000" auto-play="true">
         <div class="frame" v-for="img in imageList">
           <image class="image" resize="cover" :src="img.src"></image>
         </div>
       </slider>
+      <div class="menu">
+        <div class="bar-item" @click="linkTo('/home')">
+            <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
+        </div>
+        <div class="bar-item" @click="linkTo('/topic')">
+            <text class="bar-txt" :class="[this.isActive('topic')]">专题</text>
+        </div>
+        <div class="bar-item" @click="linkTo('class')">
+            <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
+        </div>
+        <div class="bar-item">
+            <text class="bar-txt" :class="[this.isActive('shop')]">购物车</text>
+        </div>
+        <div class="bar-item" @click="linkTo('/my')">
+            <text class="bar-txt" :class="[this.isActive('my')]">个人</text>
+        </div>
+      </div>
       <div>platform: {{ platform }}</div>
       <text class="iconfont">&#xe689;</text>
       
@@ -38,6 +55,19 @@
   }
   .fa {
     font-family: awesomefont;
+  }
+  .menu {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 90px;
+  }
+  .bar-item{
+    flex: 1;
+  }
+  .bar-active{
+    color:#b4282d;
   }
 
 
@@ -94,7 +124,14 @@
       },
       minibarRightButtonClick () {
         modal.toast({ 'message': 'click rightButton!', 'duration': 1 });
-      }
+      },
+      isActive() {
+
+      },
+      linkTo(path) {
+        this.$router.push(path)
+      },
+      tabTo() {}
     }
   }
 </script>

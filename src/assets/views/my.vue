@@ -43,6 +43,11 @@
 
 <script>
   import { WxcButton, WxcPopup } from 'weex-ui'
+  var modal = weex.requireModule('modal')
+  modal.toast({
+    message: 'me ',
+    duration: 3
+  })
 
 
 
