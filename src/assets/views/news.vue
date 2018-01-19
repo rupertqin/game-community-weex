@@ -19,8 +19,8 @@
       <div class="bar-item" @click="linkTo('/home')">
           <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
       </div>
-      <div class="bar-item" @click="linkTo('/topic')">
-          <text class="bar-txt" :class="[this.isActive('topic')]">专题</text>
+      <div class="bar-item" @click="linkTo('/news')">
+          <text class="bar-txt" :class="[this.isActive('news')]">专题</text>
       </div>
       <div class="bar-item" @click="linkTo('class')">
           <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
@@ -35,7 +35,7 @@
 
     <list class="list">
       <cell
-        v-for="(v,i) in topics"
+        v-for="(v,i) in news"
         append="tree"
         :index="i"
         :key="i"
@@ -43,10 +43,10 @@
         @appear="onappear(i, $event)"
         @disappear="ondisappear(i, $event)">
         <div class="item">
-          <text class="item-title" @click="linkTo(`/topic/${v.id}`)">{{ v.title }}</text>
+          <text class="item-title" @click="linkTo(`/news/${v.id}`)">{{ v.title }}</text>
         </div>
       </cell>
-    </list> 
+    </list>
 
   </div>
 </template>
@@ -105,8 +105,8 @@
         { src: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'},
         { src: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'}
       ],
-      topics: [],
-      topicsLen: ''
+      news: [],
+      newsLen: ''
     }),
     created() {
       const self = this
@@ -116,9 +116,9 @@
         type:'json'
       }, function(ret) {
         if (!ret.ok) {
-          self.topics = "request failed";
+          self.news = "request failed";
         } else {
-          self.topics =  ret.data
+          self.news =  ret.data
         }
       })
     },

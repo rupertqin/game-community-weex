@@ -19,8 +19,8 @@
         <div class="bar-item" @click="linkTo('/home')">
             <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
         </div>
-        <div class="bar-item" @click="linkTo('/topic')">
-            <text class="bar-txt" :class="[this.isActive('topic')]">专题</text>
+        <div class="bar-item" @click="linkTo('/news')">
+            <text class="bar-txt" :class="[this.isActive('news')]">专题</text>
         </div>
         <div class="bar-item" @click="linkTo('class')">
             <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
