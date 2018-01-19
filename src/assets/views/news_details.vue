@@ -8,17 +8,10 @@
                    :useDefaultReturn="false"
                    @wxcMinibarLeftButtonClicked="minibarLeftButtonClick"
                    @wxcMinibarRightButtonClicked="minibarRightButtonClick">
-        <text slot="left" class="fa" style="color:#fff; width:36px; height:36px; font-size:36px;" >&#xf0c9;</text>
+        <text slot="left" class="fa" style="color:#fff; width:48px; height:48px; font-size:48px;" >&#xf104;</text>
       </wxc-minibar>
     </header>
 
-    <cell>
-      <slider class="slider" interval="3000" auto-play="true">
-        <div class="frame" v-for="img in imageList">
-          <image class="image" resize="cover" :src="img.src"></image>
-        </div>
-      </slider>
-    </cell>
     <cell class="menu">
       <div class="bar-item" @click="linkTo('/home')">
           <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
@@ -26,7 +19,7 @@
       <div class="bar-item" @click="linkTo('/news')">
           <text class="bar-txt" :class="[this.isActive('news')]">专题</text>
       </div>
-      <div class="bar-item" @click="linkTo('/class')">
+      <div class="bar-item" @click="linkTo('class')">
           <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
       </div>
       <div class="bar-item">
@@ -36,18 +29,22 @@
           <text class="bar-txt" :class="[this.isActive('my')]">个人</text>
       </div>
     </cell>
-    <cell
-      v-for="(v,i) in news"
-      append="tree"
-      :index="i"
-      :key="i"
-      class="row"
-      @appear="onappear(i, $event)"
-      @disappear="ondisappear(i, $event)">
+
+    <cell>sfdsfsdfsfsdj</cell>
+    <cell>{{ news.title }}</cell>
+    <cell>{{ news.content }}</cell>
+    <cell>{{ msg }}</cell>
+    <cell>
       <div class="item">
-        <text class="item-title" @click="linkTo(`/news/${v.id}`)">{{ v.title }}</text>
+        <text class="item-title">{{ msg }}</text>
       </div>
     </cell>
+    <cell>
+      <wxc-button text="Open Popup"
+                  @wxcButtonClicked="buttonClicked">
+      </wxc-button>
+    </cell>
+
   </list>
 </template>
 
@@ -85,8 +82,6 @@
   .bar-active{
     color:#b4282d;
   }
-
-  .list {}
   .row {width: 750px;}
   .item {height: 80px;}
 </style>
@@ -94,46 +89,41 @@
 <script>
   import { WxcButton, WxcPopup, WxcMinibar } from 'weex-ui'
   const modal = weex.requireModule('modal')
-  const stream = weex.requireModule('stream')
-
-
+  const stream = weex.requireModule('stream');
 
   export default {
     components: { WxcButton, WxcPopup, WxcMinibar },
     data: () => ({
-      imageList: [
-        { src: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg'},
-        { src: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'},
-        { src: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'}
-      ],
-      news: [],
+      news: {
+        title: 'haha',
+        content: 'content of news'
+      },
+      msg: 'empty'
     }),
     created() {
       const self = this
+      const id = this.$route.params.id
       stream.fetch({
         method: 'GET',
-        url: 'http://192.168.0.119:7001/api/v1/article',
+        url: `http://192.168.0.119:7001/api/v1/article/${ id }`,
         type:'json'
       }, function(ret) {
         if (!ret.ok) {
-          self.news = "request failed"
+          self.news = "request failed";
           self.news = ret
           modal.toast({
-            message: 'failed' + JSON.stringify(ret),
+            message: 'failed',
             duration: 3
           })
         } else {
-          self.news =  ret.data
-          modal.toast({
-            message: 'news',
-            duration: 1
-          })
+          self.news = ret.data
+          self.msg = 'success'
         }
       })
     },
     methods: {
       minibarLeftButtonClick() {
-        this.$store.dispatch('OPEN_SIDEBAR')
+        this.$router.push('/news')
       },
       minibarRightButtonClick() {
       },

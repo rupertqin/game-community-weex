@@ -8,8 +8,8 @@ import mixins from './mixins'
 
 
 Vue.mixin(mixins)
-// meta.setViewport({  
+// meta.setViewport({
 //   width: 750
 // })
 new Vue(Vue.util.extend({ el: '#root', router, store }, App))
-router.push('/topic')
+router.push('/news/1')
