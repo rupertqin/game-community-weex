@@ -13,7 +13,7 @@
                 :has-margin="true"></wxc-cell>
       <wxc-cell label="新闻"
                 :has-arrow="true"
-                @wxcCellClicked="linkTo(`/topic`)"
+                @wxcCellClicked="linkTo(`/news`)"
                 :has-margin="true"></wxc-cell>
       <wxc-cell label="我"
                 :has-arrow="true"

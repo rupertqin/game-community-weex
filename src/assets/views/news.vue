@@ -21,19 +21,19 @@
     </cell>
     <cell class="menu">
       <div class="bar-item" @click="linkTo('/home')">
-          <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
+        <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
       </div>
       <div class="bar-item" @click="linkTo('/news')">
-          <text class="bar-txt" :class="[this.isActive('news')]">专题</text>
+        <text class="bar-txt" :class="[this.isActive('news')]">专题</text>
       </div>
       <div class="bar-item" @click="linkTo('/class')">
-          <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
+        <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
       </div>
       <div class="bar-item">
-          <text class="bar-txt" :class="[this.isActive('shop')]">购物车</text>
+        <text class="bar-txt" :class="[this.isActive('shop')]">购物车</text>
       </div>
       <div class="bar-item" @click="linkTo('/my')">
-          <text class="bar-txt" :class="[this.isActive('my')]">个人</text>
+        <text class="bar-txt" :class="[this.isActive('my')]">个人</text>
       </div>
     </cell>
     <cell

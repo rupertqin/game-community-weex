@@ -30,19 +30,13 @@
       </div>
     </cell>
 
-    <cell>sfdsfsdfsfsdj</cell>
-    <cell>{{ news.title }}</cell>
-    <cell>{{ news.content }}</cell>
-    <cell>{{ msg }}</cell>
     <cell>
       <div class="item">
-        <text class="item-title">{{ msg }}</text>
+        <text class="item-title">{{ news.title }}</text>
       </div>
     </cell>
     <cell>
-      <wxc-button text="Open Popup"
-                  @wxcButtonClicked="buttonClicked">
-      </wxc-button>
+      <text class="item-title">{{ news.content }}</text>
     </cell>
 
   </list>
@@ -88,7 +82,7 @@
 
 <script>
   import { WxcButton, WxcPopup, WxcMinibar } from 'weex-ui'
-  const modal = weex.requireModule('modal')
+  // const modal = weex.requireModule('modal')
   const stream = weex.requireModule('stream');
 
   export default {
@@ -98,7 +92,6 @@
         title: 'haha',
         content: 'content of news'
       },
-      msg: 'empty'
     }),
     created() {
       const self = this
@@ -109,15 +102,14 @@
         type:'json'
       }, function(ret) {
         if (!ret.ok) {
-          self.news = "request failed";
+          self.news = "request failed"
           self.news = ret
-          modal.toast({
-            message: 'failed',
-            duration: 3
-          })
+          // modal.toast({
+          //   message: 'failed',
+          //   duration: 3
+          // })
         } else {
           self.news = ret.data
-          self.msg = 'success'
         }
       })
     },
@@ -133,9 +125,7 @@
       linkTo(path) {
         this.$router.push(path)
       },
-      isActive() {
-
-      },
+      isActive() {},
       onappear() {},
       ondisappear() {},
     }
