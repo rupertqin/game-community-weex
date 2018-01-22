@@ -12,4 +12,4 @@ Vue.mixin(mixins)
 //   width: 750
 // })
 new Vue(Vue.util.extend({ el: '#root', router, store }, App))
-router.push('/news/1')
+router.push('/news')

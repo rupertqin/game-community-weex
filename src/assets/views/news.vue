@@ -19,7 +19,7 @@
         </div>
       </slider>
     </cell>
-    <cell class="menu">
+    <cell class="menu content">
       <div class="bar-item" @click="linkTo('/home')">
         <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
       </div>
@@ -41,7 +41,7 @@
       append="tree"
       :index="i"
       :key="i"
-      class="row"
+      class="row content"
       @appear="onappear(i, $event)"
       @disappear="ondisappear(i, $event)">
       <div class="item">
@@ -62,6 +62,10 @@
     margin-bottom: 25px;
     width: 750px;
     height: 250px;
+  }
+  .content {
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .frame {
     width: 750px;

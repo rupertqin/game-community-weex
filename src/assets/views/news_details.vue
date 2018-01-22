@@ -12,7 +12,7 @@
       </wxc-minibar>
     </header>
 
-    <cell class="menu">
+    <cell class="menu content">
       <div class="bar-item" @click="linkTo('/home')">
           <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
       </div>
@@ -30,12 +30,12 @@
       </div>
     </cell>
 
-    <cell>
+    <cell class="content">
       <div class="item">
         <text class="item-title">{{ news.title }}</text>
       </div>
     </cell>
-    <cell>
+    <cell class="content">
       <text class="item-title">{{ news.content }}</text>
     </cell>
 
@@ -53,6 +53,11 @@
     margin-bottom: 25px;
     width: 750px;
     height: 250px;
+  }
+  .content {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
   }
   .frame {
     width: 750px;

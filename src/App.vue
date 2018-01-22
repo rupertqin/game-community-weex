@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <router-view></router-view>
     <wxc-popup width="500"
                pos="left"

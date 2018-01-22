@@ -15,36 +15,39 @@
           <image class="image" resize="cover" :src="img.src"></image>
         </div>
       </slider>
-      <div class="menu">
-        <div class="bar-item" @click="linkTo('/home')">
-            <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
+      <div class="content">
+        <div class="menu">
+          <div class="bar-item" @click="linkTo('/home')">
+              <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
+          </div>
+          <div class="bar-item" @click="linkTo('/news')">
+              <text class="bar-txt" :class="[this.isActive('news')]">专题</text>
+          </div>
+          <div class="bar-item" @click="linkTo('class')">
+              <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
+          </div>
+          <div class="bar-item">
+              <text class="bar-txt" :class="[this.isActive('shop')]">购物车</text>
+          </div>
+          <div class="bar-item" @click="linkTo('/my')">
+              <text class="bar-txt" :class="[this.isActive('my')]">个人</text>
+          </div>
         </div>
-        <div class="bar-item" @click="linkTo('/news')">
-            <text class="bar-txt" :class="[this.isActive('news')]">专题</text>
-        </div>
-        <div class="bar-item" @click="linkTo('class')">
-            <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
-        </div>
-        <div class="bar-item">
-            <text class="bar-txt" :class="[this.isActive('shop')]">购物车</text>
-        </div>
-        <div class="bar-item" @click="linkTo('/my')">
-            <text class="bar-txt" :class="[this.isActive('my')]">个人</text>
-        </div>
-      </div>
-      <div>platform: {{ platform }}</div>
-      <text class="iconfont">&#xe689;</text>
-      
+        <div>platform: {{ platform }}</div>
+        <text class="iconfont">&#xe689;</text>
+        
 
-      <image :src="logoUrl" class="logo" style="width: 360px;height: 207.6px;"></image>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="title">Home {{target}}</text>
-      <text class="desc">Now, let's use vue to build your weex app.</text>
-      <wxc-button text="Open Popup"
-                  @wxcButtonClicked="buttonClicked">
-      </wxc-button>
+        <image :src="logoUrl" class="logo" style="width: 360px;height: 207.6px;"></image>
+        <text class="title">Home {{target}}</text>
+        <text class="title">Home {{target}}</text>
+        <text class="title">Home {{target}}</text>
+        <text class="title">Home {{target}}</text>
+        <text class="desc">Now, let's use vue to build your weex app.</text>
+        <wxc-button class="btn" text="Open Popup"
+                    @wxcButtonClicked="buttonClicked">
+        </wxc-button>
+      </div>
+      
     </div>
   </scroller>
 </template>
@@ -55,6 +58,11 @@
   }
   .fa {
     font-family: awesomefont;
+  }
+  .content {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
   }
   .menu {
     display: flex;
@@ -68,6 +76,9 @@
   }
   .bar-active{
     color:#b4282d;
+  }
+  .btn {
+    width: 730px;
   }
 
 

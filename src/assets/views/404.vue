@@ -7,7 +7,7 @@
                  :useDefaultReturn="false"
                  @wxcMinibarLeftButtonClicked="minibarLeftButtonClick"
                  @wxcMinibarRightButtonClicked="minibarRightButtonClick">
-      <text slot="left" class="fa" style="color:#fff; width:36px; height:36px; font-size:36px;" >&#xf104;</text>
+      <text slot="left" class="fa" style="color:#fff; width:48px; height:48px; font-size:48px;" >&#xf104;</text>
     </wxc-minibar>
 
   </div>
