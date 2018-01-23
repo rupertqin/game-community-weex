@@ -12,6 +12,11 @@
       </wxc-minibar>
     </header>
 
+    <loading @loading="fetchData" :display="loading ? 'show' : 'hide'">
+      <text class="refresh-info">Loading ...</text>
+      <loading-indicator class="indicator"></loading-indicator>
+    </loading>
+
     <cell>
       <slider class="slider" interval="3000" auto-play="true">
         <div class="frame" v-for="img in imageList">
@@ -24,7 +29,7 @@
         <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
       </div>
       <div class="bar-item" @click="linkTo('/news')">
-        <text class="bar-txt" :class="[this.isActive('news')]">专题</text>
+        <text class="bar-txt" :class="[this.isActive('news')]">资讯</text>
       </div>
       <div class="bar-item" @click="linkTo('/class')">
         <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
@@ -36,6 +41,7 @@
         <text class="bar-txt" :class="[this.isActive('my')]">个人</text>
       </div>
     </cell>
+
     <cell
       v-for="(v,i) in news"
       append="tree"
@@ -110,48 +116,42 @@
         { src: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'},
         { src: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'}
       ],
-      news: [],
+      page: 0,
     }),
-    created() {
-      const self = this
-      stream.fetch({
-        method: 'GET',
-        url: 'http://192.168.0.119:7001/api/v1/article',
-        type:'json'
-      }, function(ret) {
-        if (!ret.ok) {
-          self.news = "request failed"
-          self.news = ret
-          modal.toast({
-            message: 'failed' + JSON.stringify(ret),
-            duration: 3
-          })
-        } else {
-          self.news =  ret.data
-          modal.toast({
-            message: 'news',
-            duration: 1
-          })
-        }
-      })
+    computed: {
+      news () {
+        return this.$store.state.newsList
+      },
+      loading () {
+        return this.$store.state.loading
+      }
+    },
+    created () {
+      this.$store.dispatch('RESET_NEWS_LIST')
+      this.fetchData()
     },
     methods: {
-      minibarLeftButtonClick() {
+      minibarLeftButtonClick () {
         this.$store.dispatch('OPEN_SIDEBAR')
       },
-      minibarRightButtonClick() {
+      minibarRightButtonClick () {
       },
       buttonClicked () {
         this.$store.dispatch('OPEN_SIDEBAR')
       },
-      linkTo(path) {
+      linkTo (path) {
         this.$router.push(path)
       },
-      isActive() {
+      isActive () {
 
       },
-      onappear() {},
-      ondisappear() {},
+      fetchData () {
+        if (this.$store.state.noMoreNews) return 
+        this.$store.dispatch('FETCH_NEWS_LIST', ++this.page)
+      },
+      onappear () {},
+      ondisappear () {},
     }
   }
 </script>
+
