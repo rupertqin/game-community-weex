@@ -24,7 +24,7 @@ export function fetchNewsDetails (id) {
   return new Promise((resolve, reject) => {
     stream.fetch({
       method: 'GET',
-      url: `${ baseUrl }api/v1/article${ id }`,
+      url: `${ baseUrl }api/v1/article/${ id }`,
       type: 'json'
     }, (response) => {
       if (response.status == 200) {

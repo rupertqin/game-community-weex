@@ -7,10 +7,14 @@ export default {
     state.newsList = []
     state.noMoreNews = false
   },
-  FETCH_NEWS_LIST_FINISH: (state, [list]) => {
+  FETCH_NEWS_LIST_FINISH: (state, list) => {
     if (list.length < 10) state.noMoreNews = true
     const mergeList = state.newsList.concat(list)
     state.newsList = mergeList
+    state.loading = false
+  },
+  FETCH_NEWS_DETAILS_FINISH: (state, news) => {
+    state.news = news
     state.loading = false
   }
 }

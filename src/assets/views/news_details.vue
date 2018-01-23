@@ -93,30 +93,15 @@
   export default {
     components: { WxcButton, WxcPopup, WxcMinibar },
     data: () => ({
-      news: {
-        title: 'haha',
-        content: 'content of news'
-      },
     }),
     created() {
-      const self = this
       const id = this.$route.params.id
-      stream.fetch({
-        method: 'GET',
-        url: `http://192.168.0.119:7001/api/v1/article/${ id }`,
-        type:'json'
-      }, function(ret) {
-        if (!ret.ok) {
-          self.news = "request failed"
-          self.news = ret
-          // modal.toast({
-          //   message: 'failed',
-          //   duration: 3
-          // })
-        } else {
-          self.news = ret.data
-        }
-      })
+      this.$store.dispatch('FETCH_NEWS_DETAILS', id)
+    },
+    computed: {
+      news() {
+        return this.$store.state.news
+      }
     },
     methods: {
       minibarLeftButtonClick() {
@@ -124,7 +109,7 @@
       },
       minibarRightButtonClick() {
       },
-      buttonClicked () {
+      buttonClicked() {
         this.$store.dispatch('OPEN_SIDEBAR')
       },
       linkTo(path) {
