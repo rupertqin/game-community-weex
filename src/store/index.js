@@ -5,6 +5,7 @@ import mutations from './mutations'
 import { state, getters } from './state'
 
 // Vuex is auto installed on the web
+console.log(WXEnvironment.deviceHeight)
 if (WXEnvironment.platform !== 'Web') {
   Vue.use(Vuex)
 }
